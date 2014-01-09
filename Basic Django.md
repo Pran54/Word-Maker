@@ -69,7 +69,7 @@ A QuerySet can be sliced like a normal python iterable.
 Admin Page
 ==========
 -add /admin to the server URL
--The login is your superuser thing (david9517, tcgm)
+-The login is your superuser thing
 -Have to edit the admin.py file 
 
 from django.contrib import admin
