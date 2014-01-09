@@ -90,8 +90,78 @@ admin.site.register(Poll, PollAdmin)
 
 Views
 =====
+- Django uses URLConfs, which map URL patterns to views. 
+
+- We redirected the urls.py from mysite.urls to the polls.urls. The mysite.urls also has stuff for the admin site. 
+
+- include() is used. include() points to other URLConfs. It chops off the preceding part of the string.
+
+- The urls.py file has all the regexes and the matching commands, in the form of url() functions. views is imported from polls.
+
+- Meanwhile, the views.py file has the views given a request. The return statement has an HTTP response.
+
+- Don't need the .html at the end.
+
+
+
+-url()
+------
+
+Arguments:
+
+-		regex
+Matches regular expressions against requested URLs, looking for the first match.
+
+A r'^ starts a regex. 
+
+( Some complicated shit about regex notations )
+
+A $ sign ends a regex.
+
+-   	view	
+Calls the specified view function
+(Optional)
+
+- 	kwargs
+
+- `	name`
+
+Views that do something: Django's template system
+---------------------------------------------------------
+
+Bottom line, all a view needs to return is either an HTTPResponse or an HTTP404. An HTTP response is a very broad category, however.
+
+- A template should go in the app folder, not the project folder for the sake of portability.
+
+- It is necessary to namespace (having a directory inside a template folder inside of the directory) because otherwise Django could find views from another app.
+
+Example of loading a view:
+
+`def index(request):
+    latest_poll_list = Poll.objects.all().order_by('-pub_date')[:5]
+    context = {'latest_poll_list': latest_poll_list}
+    return render(request, 'polls/index.html', context)`
+	
+-The render() function takes the request object as its first argument, a template name as its second argument and a dictionary as its optional third argument. It returns an HttpResponse object of the given template rendered with the given context.
+
+Raising a 404 error
+-------------------
+`try:
+	blahblahblah
+except:
+	raise Http404`
+
+    poll = get_object_or_404(Poll, pk=poll_id)
+     return render(request, 'polls/detail.html', {'poll': poll})
+
+The get_object_or_404() function takes a Django model as its first argument and an arbitrary number of keyword arguments, which it passes to the get() function of the model’s manager. It raises Http404 if the object doesn’t exist.
+ 
+Templates
+---------
+https://docs.djangoproject.com/en/1.6/topics/templates/
+
+Obviously, there is a lot to read up on.
   
-  
-  
+
   
  
