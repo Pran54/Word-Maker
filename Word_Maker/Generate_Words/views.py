@@ -7,7 +7,7 @@ word_list = brown.words()
 
 def find_word():
 	x = choice(word_list)
-	while len(x) <= 2 and not x.isalpha():
+	while len(x) <= 2 or not x.isalpha():
 		x = choice(word_list)
 	return x
 

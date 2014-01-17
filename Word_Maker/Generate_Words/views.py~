@@ -15,4 +15,4 @@ def home(request):
 	word1 = find_word()
 	word2 = find_word()
 	word3 = find_word()
-	return 
+	return render_to_response("Generate_Words/home.html", {"word_list" : [word1, word2, word3]})
