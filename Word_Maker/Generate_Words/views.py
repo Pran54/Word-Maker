@@ -2,6 +2,7 @@ from django.shortcuts import render_to_response
 from nltk.corpus import brown
 from random import choice
 
+
 # Create your views here.
 word_list = brown.words()
 
